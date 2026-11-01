@@ -10,8 +10,8 @@ from rag import HybridRAG
 
 load_dotenv()
 
-st.set_page_config(page_title="Document Chat", layout="wide")
-st.title("Document Chat")
+st.set_page_config(page_title="Intelligent Document Research Assistant", layout="wide")
+st.title("Intelligent Document Research Assistant")
 
 
 @st.cache_resource

@@ -1,7 +1,9 @@
+import os
+
 from langchain_community.document_loaders import Docx2txtLoader, PyPDFLoader, TextLoader
 from langchain_community.retrievers import BM25Retriever
 from langchain_community.vectorstores import FAISS
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_aws import BedrockEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 LOADERS = {
@@ -15,7 +17,10 @@ LOADERS = {
 class HybridRAG:
     def __init__(self, k=4):
         self.k = k
-        self.embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+        self.embeddings = BedrockEmbeddings(
+            model_id=os.getenv("BEDROCK_EMBEDDING_MODEL_ID", "amazon.titan-embed-text-v2:0"),
+            region_name=os.getenv("AWS_REGION"),
+        )
         self.splitter = RecursiveCharacterTextSplitter(chunk_size=800, chunk_overlap=120)
         self.reset()
 
