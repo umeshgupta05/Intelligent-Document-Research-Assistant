@@ -1,0 +1,14 @@
+streamlit
+python-dotenv
+langgraph
+langchain-core
+langchain-aws
+langchain-community
+langchain-text-splitters
+langchain-huggingface
+langchain-tavily
+faiss-cpu
+rank_bm25
+pypdf
+docx2txt
+sentence-transformers
